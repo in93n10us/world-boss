@@ -1,0 +1,60 @@
+toml
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+authors = ["StudyFlow Team"]
+description = "API server for StudyFlow application"
+license = "MIT"
+
+[dependencies]
+# Web framework
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["trace", "cors", "request-id", "util"] }
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Configuration
+dotenvy = "0.15"
+config = "0.14"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Validation
+validator = { version = "0.18", features = ["derive"] }
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID support
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# Internal dependencies
+core = { path = "../core" }
+db = { path = "../db" }
+
+[dev-dependencies]
+# Testing utilities
+axum-test = "14.0"
+tokio-test = "0.4"
+mockall = "0.12"
+fake = { version = "2.9", features = ["derive", "chrono", "uuid"] }
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "api"
+path = "src/main.rs"

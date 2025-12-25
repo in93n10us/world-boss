@@ -1,0 +1,45 @@
+# Clippy configuration for strict linting rules
+# This enforces high code quality standards across the workspace
+
+# Deny all warnings in CI/CD pipelines
+# (Can be overridden locally with RUSTFLAGS="-A warnings")
+
+# Correctness lints - these catch potential bugs
+# Deny by default as they indicate serious issues
+avoid-breaking-exported-api = true
+
+# Complexity lints - encourage simpler, more maintainable code
+cognitive-complexity-threshold = 30
+too-many-arguments-threshold = 7
+type-complexity-threshold = 250
+
+# Performance lints - catch common performance issues
+# These are particularly important for a web server
+vec-box-size-threshold = 4096
+large-stack-arrays-size-threshold = 16384
+
+# Style preferences for consistency
+single-char-binding-names-threshold = 4
+
+# Documentation requirements
+missing-docs-in-private-items = false  # Allow private items without docs
+missing-errors-doc = true              # Require error documentation
+missing-panics-doc = true              # Require panic documentation
+missing-safety-doc = true              # Require safety documentation for unsafe code
+
+# Pedantic lints to enable (these are opt-in but recommended)
+# Enable these gradually as the codebase matures
+# pedantic = "warn"
+
+# Restriction lints - these are opinionated but useful
+# Enable selectively based on team preferences
+allow-unwrap-in-tests = true           # Allow unwrap() in test code
+allow-expect-in-tests = true           # Allow expect() in test code
+allow-panic-in-tests = true            # Allow panic!() in test code
+
+# Nursery lints - experimental but useful
+# These may have false positives but catch real issues
+# nursery = "warn"
+
+# Cargo lints
+cargo-common-metadata = true           # Ensure Cargo.toml has proper metadata

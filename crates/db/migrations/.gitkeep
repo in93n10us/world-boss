@@ -1,0 +1,6 @@
+// Placeholder for SQLx migrations directory
+// Auto-generated file
+
+function main() {
+    return true;
+}
